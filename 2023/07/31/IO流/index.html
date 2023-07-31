@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>zdy | Dandy</title>
+  <title>IO流 | Dandy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="welcom">
+  <meta name="description" content="IO流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zdy">
-<meta property="og:url" content="http://example.com/2023/07/30/zdy/index.html">
+<meta property="og:title" content="IO流">
+<meta property="og:url" content="http://example.com/2023/07/31/IO%E6%B5%81/index.html">
 <meta property="og:site_name" content="Dandy">
-<meta property="og:description" content="welcom">
+<meta property="og:description" content="IO流">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/2.jpg">
-<meta property="article:published_time" content="2023-07-30T12:38:51.000Z">
-<meta property="article:modified_time" content="2023-07-31T02:39:44.077Z">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719103607904.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719110829571.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719111717663.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719112719923.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113014328.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113412700.png">
+<meta property="article:published_time" content="2023-07-31T07:10:49.000Z">
+<meta property="article:modified_time" content="2023-07-31T07:16:23.305Z">
 <meta property="article:author" content="Dandy.">
-<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/2.jpg">
+<meta name="twitter:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719103607904.png">
   
     <link rel="alternative" href="/atom.xml" title="Dandy" type="application/atom+xml">
   
@@ -177,29 +181,564 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-zdy" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-IO流" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      zdy
+      IO流
     </h1>
   
 
         
-        <a href="/2023/07/30/zdy/" class="archive-article-date">
-  	<time datetime="2023-07-30T12:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-30</time>
+        <a href="/2023/07/31/IO%E6%B5%81/" class="archive-article-date">
+  	<time datetime="2023-07-31T07:10:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="welcom"><a href="#welcom" class="headerlink" title="welcom"></a>welcom</h1><span id="more"></span>
+        <h3 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h3><span id="more"></span>
 
-<h2 id="to"><a href="#to" class="headerlink" title="to"></a>to</h2><h3 id="beijing"><a href="#beijing" class="headerlink" title="beijing"></a>beijing</h3><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/2.jpg"></p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719103607904.png"></p>
+<p>IO流的作用？</p>
+<p>读写文件数据的</p>
+<p>总结流的四大类:</p>
+<p>字节输入流：以内存为基准，来自磁盘文件&#x2F;网络中的数据以字节的形式<strong>读入</strong>到内存中去的流称为字节输入流。</p>
+<p>字节输出流：以内存为基准，把内存中的数据以字节<strong>写出</strong>到磁盘文件或者网络中去的流称为字节输出流。</p>
+<p>字符输入流：以内存为基准，来自磁盘文件&#x2F;网络中的数据以字符的形式<strong>读入</strong>到内存中去的流称为字符输入流。</p>
+<p>字符输出流：以内存为基准，把内存中的数据以字符<strong>写出</strong>到磁盘文件或者网络介质中去的流称为字符输出流。</p>
+<h4 id="1、字节输入流"><a href="#1、字节输入流" class="headerlink" title="1、字节输入流"></a>1、字节输入流</h4><p>文件字节输入流：<strong>FileInputStream</strong></p>
+<p>作用：以内存为基准，把磁盘文件中的数据以字节的形式读取到内存中去。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileInputStream(File file)</td>
+<td>创建字节输入流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileInputStream(String pathname)</td>
+<td>创建字节输入流管道与源文件路径接通</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int read()</td>
+<td>每次读取一个字节返回，如果字节已经没有可读的返回-1</td>
+</tr>
+<tr>
+<td>public int read(byte[] buffer)</td>
+<td>每次读取一个字节数组返回，如果字节已经没有可读的返回-1</td>
+</tr>
+</tbody></table>
+<p>每次读取一个字节存在什么问题？性能较慢，读取中文字符输出无法避免乱码问题。</p>
+<p>每次读取一个字节数组存在什么问题？读取的性能得到了提升，读取中文字符输出无法避免乱码问题。</p>
+<p>所以，官方为字节输入流InputStream提供了如下API，可以直接把文件的全部数据读取到一个字节数组中</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public byte[] readAllBytes() throws IOException</td>
+<td>直接将当前字节输入流对应的文件对象的字节数据装到一个字节数组返回</td>
+</tr>
+</tbody></table>
+<p>如何使用字节输入流读取中文内容输出不乱码呢？</p>
+<p>一次性读取完全部字节。可以定义与文件一样大的字节数组读取，也可以使用官方API.</p>
+<p>直接把文件数据全部读取到一个字节数组可以避免乱码，是否存在问题？</p>
+<p>如果文件过大，定义的字节数组可能引起内存溢出。</p>
+<h4 id="2、字节输出流"><a href="#2、字节输出流" class="headerlink" title="2、字节输出流"></a>2、字节输出流</h4><p>文件字节输出流：<strong>FileOutputStream</strong></p>
+<p>作用：以内存为基准，把内存中的数据以字节的形式写出到磁盘文件中去的流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileOutputStream(File file)</td>
+<td>创建字节输出流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileOutputStream(File file，boolean append)</td>
+<td>创建字节输出流管道与源文件对象接通，可追加数据</td>
+</tr>
+<tr>
+<td>public FileOutputStream(String filepath)</td>
+<td>创建字节输出流管道与源文件路径接通</td>
+</tr>
+<tr>
+<td>public FileOutputStream(String filepath，boolean append)</td>
+<td>创建字节输出流管道与源文件路径接通，可追加数据</td>
+</tr>
+</tbody></table>
+<p>文件字节输出流（FileOutputStream）写数据出去的API：</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void write(int a)</td>
+<td>写一个字节出去</td>
+</tr>
+<tr>
+<td>public void write(byte[] buffer)</td>
+<td>写一个字节数组出去</td>
+</tr>
+<tr>
+<td>public void write(byte[] buffer , int pos , int len)</td>
+<td>写一个字节数组的一部分出去。</td>
+</tr>
+</tbody></table>
+<p>流的关闭与刷新：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flush()</td>
+<td>刷新流，还可以继续写数据</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭流，释放资源，但是在关闭之前会先刷新流。一旦关闭，就不能再写数据</td>
+</tr>
+</tbody></table>
+<p>字节输出流如何实现写出去的数据能换行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.write(“\r\n”.getBytes())</span><br></pre></td></tr></table></figure>
+
+<p>如何让写出去的数据能成功生效？</p>
+<p>flush()刷新数据close()方法是关闭流，<strong>关闭包含刷新</strong>，关闭后流不可以继续使用了。</p>
+<p>字节流适合做一切文件数据的拷贝吗？</p>
+<p>任何文件的底层都是字节，拷贝是一字不漏的转移字节，只要前后文件格式、编码一致没有任何问题。</p>
+<p>资源释放的方式：</p>
+<p>try-catch-finally</p>
+<p>finally：放在try-catch后面的，无论是正常执行还是异常执行代码，最后一定要执行，除非JVM退出。</p>
+<p>作用：一般用于进行最后的资源释放操作（专业级做法）</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719110829571.png"></p>
+<p>try-catch-resource</p>
+<p>自动释放资源、代码简洁</p>
+<h4 id="3、字符输入流"><a href="#3、字符输入流" class="headerlink" title="3、字符输入流"></a>3、字符输入流</h4><p>读取中文输出，哪个流更合适，为什么？</p>
+<p>字符流更合适，最小单位是按照单个字符读取的。</p>
+<p>文件字符输入流：<strong>FileReader</strong></p>
+<p>作用：以内存为基准，把磁盘文件中的数据以字符的形式读取到内存中去。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileReader(File file)</td>
+<td>创建字符输入流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileReader(String pathname)</td>
+<td>创建字符输入流管道与源文件路径接通</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int read()</td>
+<td>每次读取一个字符返回，如果字符已经没有可读的返回-1</td>
+</tr>
+<tr>
+<td>public int read(char[] buffer)</td>
+<td>每次读取一个字符数组，返回读取的字符个数，如果字符已经没有可读的返回-1</td>
+</tr>
+</tbody></table>
+<p>字符流的好处。每次读取一个字符存在什么问题？</p>
+<p>读取中文字符不会出现乱码（如果代码文件编码一致）、性能较慢</p>
+<p>每次读取一个字符数组的优势？</p>
+<p>读取的性能得到了提升、读取中文字符输出不会乱码。</p>
+<h4 id="4、字符输出流"><a href="#4、字符输出流" class="headerlink" title="4、字符输出流"></a>4、字符输出流</h4><p>文件字符输出流：<strong>FileWriter</strong></p>
+<p>作用：以内存为基准，把内存中的数据以字符的形式写出到磁盘文件中去的流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileWriter(File file)</td>
+<td>创建字符输出流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileWriter(File file，boolean append)</td>
+<td>创建字符输出流管道与源文件对象接通，可追加数据</td>
+</tr>
+<tr>
+<td>public FileWriter(String filepath)</td>
+<td>创建字符输出流管道与源文件路径接通</td>
+</tr>
+<tr>
+<td>public FileWriter(String filepath，boolean append)</td>
+<td>创建字符输出流管道与源文件路径接通，可追加数据</td>
+</tr>
+</tbody></table>
+<p>文件字符输出流（FileWriter）写数据出去的API</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(int c)</td>
+<td>写一个字符</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf)</td>
+<td>写入一个字符数组</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf, int off, int len)</td>
+<td>写入字符数组的一部分</td>
+</tr>
+<tr>
+<td>void write(String str)</td>
+<td>写一个字符串</td>
+</tr>
+<tr>
+<td>void write(String str, int off, int len)</td>
+<td>写一个字符串的一部分</td>
+</tr>
+</tbody></table>
+<p>流的关闭与刷新</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flush()</td>
+<td>刷新流，还可以继续写数据（冲洗）</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭流，释放资源，但是在关闭之前会先刷新流。一旦关闭，就不能再写数据</td>
+</tr>
+</tbody></table>
+<p>字符输出流如何实现写出去的数据能换行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fw.write(“\r\n”)</span><br></pre></td></tr></table></figure>
+
+<p>如何让写出去的数据能成功生效？</p>
+<p>flush()刷新数据close()方法是关闭流，<strong>关闭包含刷新</strong>，关闭后流不可以继续使用了。</p>
+<h4 id="5、小结"><a href="#5、小结" class="headerlink" title="5、小结"></a>5、小结</h4><p> 字节流、字符流的使用场景总结？</p>
+<p><strong>字节流</strong>适合做一切<strong>文件数据的拷贝</strong>（音视频，文本）</p>
+<p>字节流不适合读取中文内容输出</p>
+<p><strong>字符流</strong>适合做<strong>文本文件的操作</strong>（读，写）</p>
+<h4 id="6、缓冲流"><a href="#6、缓冲流" class="headerlink" title="6、缓冲流"></a>6、缓冲流</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719111717663.png"></p>
+<p>缓冲流也称为高效流、或者高级流。之前学习的字节流可以称为原始流。</p>
+<p>作用：<strong>缓冲流自带缓冲区、可以提高原始字节流、字符流读写数据的性能</strong></p>
+<h5 id="①字节缓冲流"><a href="#①字节缓冲流" class="headerlink" title="①字节缓冲流"></a>①字节缓冲流</h5><p>字节缓冲输入流：BufferedInputStream，自带8KB缓冲区，提高字节输入流读取数据的性能。 </p>
+<p>字节缓冲输出流：BufferedOutputStream，自带8KB缓冲区，提高字节输出流读取数据的性能。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedInputStream(InputStream is)</td>
+<td>可以把低级的字节输入流包装成一个高级的缓冲字节输入流管道，从而提高字节输入流读数据的性能</td>
+</tr>
+<tr>
+<td>public BufferedOutputStream(OutputStream os)</td>
+<td>可以把低级的字节输出流包装成一个高级的缓冲字节输出流，从而提高写数据的性能</td>
+</tr>
+</tbody></table>
+<p>推荐使用哪种方式提高字节流读写数据的性能？</p>
+<p>建议使用字节缓冲输入流、字节缓冲输出流，结合字节数组的方式，目前来看是性能最优的组合。</p>
+<h5 id="②字符缓冲流"><a href="#②字符缓冲流" class="headerlink" title="②字符缓冲流"></a>②字符缓冲流</h5><p>字符缓冲输入流：BufferedReader</p>
+<p>作用：提高字符输入流读取数据的性能，除此之外多了<strong>按照行读取数据</strong>的功能。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedReader(Reader r)</td>
+<td>可以把低级的字符输入流包装成一个高级的缓冲字符输入流管道，从而提高字符输入流读数据的性能</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输入流新增功能</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public String readLine()</td>
+<td>读取一行数据返回，如果读取没有完毕，无行可读返回null</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输出流：BufferedWriter</p>
+<p>作用：提高字符输出流写取数据的性能，除此之外多了<strong>换行功能</strong></p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedWriter(Writer w)</td>
+<td>可以把低级的字符输出流包装成一个高级的缓冲字符输出流管道，从而提高字符输出流写数据的性能</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输出流新增功能</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void newLine()</td>
+<td>换行操作</td>
+</tr>
+</tbody></table>
+<h4 id="7、转换流"><a href="#7、转换流" class="headerlink" title="7、转换流"></a>7、转换流</h4><p>字符流直接读取文本内容：</p>
+<p>必须文件和代码编码一致才不会乱码</p>
+<p>如果文件和代码编码不一致，读取将出现乱码。</p>
+<p>如果如何解决呢？</p>
+<p>使用字符输入转换流可以提取文件（GBK）的原始字节流，原始字节不会存在问题。然后把字节流以指定编码转换成字符输入流，这样字符输入流中的字符就不乱码</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719112719923.png"></p>
+<h5 id="①字符输入转换流"><a href="#①字符输入转换流" class="headerlink" title="①字符输入转换流"></a>①字符输入转换流</h5><p>字符输入转换流：InputStreamReader，可以把原始的字节流按照指定编码转换成字符输入流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public InputStreamReader(InputStream is)</td>
+<td>可以把原始的字节流按照代码默认编码转换成字符输入流。几乎不用，与默认的FileReader一样。</td>
+</tr>
+<tr>
+<td>public InputStreamReader(InputStream is ，String charset)</td>
+<td>可以把原始的字节流按照指定编码转换成字符输入流，这样字符流中的字符就不乱码了(重点)</td>
+</tr>
+</tbody></table>
+<h5 id="②字符输入转换流"><a href="#②字符输入转换流" class="headerlink" title="②字符输入转换流"></a>②字符输入转换流</h5><p>字符输入转换流：OutputStreamWriter，可以把字节输出流按照指定编码转换成字符输出流</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public OutputStreamWriter(OutputStream os)</td>
+<td>可以把原始的字节输出流按照代码默认编码转换成字符输出流。几乎不用。</td>
+</tr>
+<tr>
+<td>public OutputStreamWriter(OutputStream os，String charset)</td>
+<td>可以把原始的字节输出流按照指定编码转换成字符输出流(重点)</td>
+</tr>
+</tbody></table>
+<h4 id="8、序列化对象"><a href="#8、序列化对象" class="headerlink" title="8、序列化对象"></a>8、序列化对象</h4><p>序列化对象的要求是怎么样的？对象必须实现序列化接口</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113014328.png"></p>
+<h5 id="①对象序列化"><a href="#①对象序列化" class="headerlink" title="①对象序列化"></a>①对象序列化</h5><p>使用到的流是对象字节输出流：ObjectOutputStream</p>
+<p>作用：以内存为基准，把内存中的对象存储到磁盘文件中去，称为对象序列化。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public ObjectOutputStream(OutputStream out)</td>
+<td>把低级字节输出流包装成高级的对象字节输出流</td>
+</tr>
+</tbody></table>
+<p>ObjectOutputStream序列化方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public final void writeObject(Object obj)</td>
+<td>把对象写出去到对象序列化流的文件中去</td>
+</tr>
+</tbody></table>
+<h5 id="②对象反序列化"><a href="#②对象反序列化" class="headerlink" title="②对象反序列化"></a>②对象反序列化</h5><p>使用到的流是对象字节输入流：ObjectInputStream</p>
+<p>作用：以内存为基准，把存储到磁盘文件中去的对象数据恢复成内存中的对象，称为对象反序列化。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public ObjectInputStream(InputStream out)</td>
+<td>把低级字节输如流包装成高级的对象字节输入流</td>
+</tr>
+</tbody></table>
+<p>ObjectInputStream序列化方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Object readObject()</td>
+<td>把存储到磁盘文件中去的对象数据恢复成内存中的对象返回</td>
+</tr>
+</tbody></table>
+<h4 id="9、打印流"><a href="#9、打印流" class="headerlink" title="9、打印流"></a>9、打印流</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113412700.png"></p>
+<p>作用：打印流可以实现方便、高效的打印数据到文件中去。</p>
+<p>打印流一般是指：PrintStream，PrintWriter两个类。</p>
+<p>可以实现打印什么数据就是什么数据，例如打印整数97写出去就是97，打印boolean的true，写出去就是true。</p>
+<h5 id="①PrintStream"><a href="#①PrintStream" class="headerlink" title="①PrintStream"></a>①PrintStream</h5><table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public PrintStream(OutputStream os)</td>
+<td>打印流直接通向字节输出流管道</td>
+</tr>
+<tr>
+<td>public PrintStream(File f)</td>
+<td>打印流直接通向文件对象</td>
+</tr>
+<tr>
+<td>public PrintStream(String filepath)</td>
+<td>打印流直接通向文件路径</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void print(Xxx xx)</td>
+<td>打印任意类型的数据出去</td>
+</tr>
+</tbody></table>
+<h5 id="②PrintWriter"><a href="#②PrintWriter" class="headerlink" title="②PrintWriter"></a>②PrintWriter</h5><table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public PrintWriter(OutputStream os)</td>
+<td>打印流直接通向字节输出流管道</td>
+</tr>
+<tr>
+<td>public PrintWriter (Writer w)</td>
+<td>打印流直接通向字符输出流管道</td>
+</tr>
+<tr>
+<td>public PrintWriter (File f)</td>
+<td>打印流直接通向文件对象</td>
+</tr>
+<tr>
+<td>public PrintWriter (String filepath)</td>
+<td>打印流直接通向文件路径</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void print(Xxx xx)</td>
+<td>打印任意类型的数据出去</td>
+</tr>
+</tbody></table>
+<p>PrintStream和PrintWriter的区别</p>
+<p>打印数据功能上是一模一样的，都是使用方便，性能高效（核心优势）</p>
+<p>PrintStream继承自字节输出流OutputStream，支持<strong>写字节数据</strong>的方法。</p>
+<p>PrintWriter继承自字符输出流Writer，支持<strong>写字符数据</strong>出去。</p>
+<h5 id="③输出语句的重定向"><a href="#③输出语句的重定向" class="headerlink" title="③输出语句的重定向"></a>③输出语句的重定向</h5><p>属于打印流的一种应用，可以把输出语句的打印位置改到文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PrintStream</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="string">&quot;文件地址&quot;</span>)</span><br><span class="line">System.setOut(ps);</span><br></pre></td></tr></table></figure>
+
+<h4 id="10、IO框架"><a href="#10、IO框架" class="headerlink" title="10、IO框架"></a>10、IO框架</h4><p>commons-io概述</p>
+<p>commons-io是apache开源基金组织提供的一组有关IO操作的类库，可以提高IO功能开发的效率。</p>
+<p>commons-io工具包提供了很多有关io操作的类。有两个主要的类FileUtils, IOUtils</p>
+<p>FileUtils主要有如下方法:</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String readFileToString(File file, String encoding)</td>
+<td>读取文件中的数据, 返回字符串</td>
+</tr>
+<tr>
+<td>void copyFile(File srcFile, File destFile)</td>
+<td>复制文件。</td>
+</tr>
+<tr>
+<td>void copyDirectoryToDirectory(File srcDir, File destDir)</td>
+<td>复制文件夹。</td>
+</tr>
+</tbody></table>
 
       
 
@@ -239,18 +778,18 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
 
       
 
@@ -300,7 +839,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://llllz-d.github.io/2023/07/30/zdy/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://llllz-d.github.io/2023/07/31/IO%E6%B5%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -314,18 +853,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/07/31/%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          集合汇总
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你好,世界</div>
+    <a href="/2023/07/31/%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">集合汇总</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -352,7 +882,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#welcom"><span class="toc-number">1.</span> <span class="toc-text">welcom</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#to"><span class="toc-number">1.1.</span> <span class="toc-text">to</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#beijing"><span class="toc-number">1.1.1.</span> <span class="toc-text">beijing</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">IO流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%AD%97%E8%8A%82%E8%BE%93%E5%85%A5%E6%B5%81"><span class="toc-number">1.1.</span> <span class="toc-text">1、字节输入流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%AD%97%E8%8A%82%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">1.2.</span> <span class="toc-text">2、字节输出流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E6%B5%81"><span class="toc-number">1.3.</span> <span class="toc-text">3、字符输入流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-number">1.4.</span> <span class="toc-text">4、字符输出流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">5、小结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E7%BC%93%E5%86%B2%E6%B5%81"><span class="toc-number">1.6.</span> <span class="toc-text">6、缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E6%B5%81"><span class="toc-number">1.6.1.</span> <span class="toc-text">①字节缓冲流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E6%B5%81"><span class="toc-number">1.6.2.</span> <span class="toc-text">②字符缓冲流</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="toc-number">1.7.</span> <span class="toc-text">7、转换流</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="toc-number">1.7.1.</span> <span class="toc-text">①字符输入转换流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="toc-number">1.7.2.</span> <span class="toc-text">②字符输入转换流</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.8.</span> <span class="toc-text">8、序列化对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.8.1.</span> <span class="toc-text">①对象序列化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E5%AF%B9%E8%B1%A1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.8.2.</span> <span class="toc-text">②对象反序列化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81%E6%89%93%E5%8D%B0%E6%B5%81"><span class="toc-number">1.9.</span> <span class="toc-text">9、打印流</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0PrintStream"><span class="toc-number">1.9.1.</span> <span class="toc-text">①PrintStream</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1PrintWriter"><span class="toc-number">1.9.2.</span> <span class="toc-text">②PrintWriter</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A2%E8%BE%93%E5%87%BA%E8%AF%AD%E5%8F%A5%E7%9A%84%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.9.3.</span> <span class="toc-text">③输出语句的重定向</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10%E3%80%81IO%E6%A1%86%E6%9E%B6"><span class="toc-number">1.10.</span> <span class="toc-text">10、IO框架</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
