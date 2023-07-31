@@ -285,10 +285,545 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h3>
-        
-          <a class="article-more-a" href="/2023/07/31/IO%E6%B5%81/#more">more >></a>
-        
+        <span id="more"></span>
+
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719103607904.png"></p>
+<p>IO流的作用？</p>
+<p>读写文件数据的</p>
+<p>总结流的四大类:</p>
+<p>字节输入流：以内存为基准，来自磁盘文件&#x2F;网络中的数据以字节的形式<strong>读入</strong>到内存中去的流称为字节输入流。</p>
+<p>字节输出流：以内存为基准，把内存中的数据以字节<strong>写出</strong>到磁盘文件或者网络中去的流称为字节输出流。</p>
+<p>字符输入流：以内存为基准，来自磁盘文件&#x2F;网络中的数据以字符的形式<strong>读入</strong>到内存中去的流称为字符输入流。</p>
+<p>字符输出流：以内存为基准，把内存中的数据以字符<strong>写出</strong>到磁盘文件或者网络介质中去的流称为字符输出流。</p>
+<h4 id="1、字节输入流"><a href="#1、字节输入流" class="headerlink" title="1、字节输入流"></a>1、字节输入流</h4><p>文件字节输入流：<strong>FileInputStream</strong></p>
+<p>作用：以内存为基准，把磁盘文件中的数据以字节的形式读取到内存中去。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileInputStream(File file)</td>
+<td>创建字节输入流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileInputStream(String pathname)</td>
+<td>创建字节输入流管道与源文件路径接通</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int read()</td>
+<td>每次读取一个字节返回，如果字节已经没有可读的返回-1</td>
+</tr>
+<tr>
+<td>public int read(byte[] buffer)</td>
+<td>每次读取一个字节数组返回，如果字节已经没有可读的返回-1</td>
+</tr>
+</tbody></table>
+<p>每次读取一个字节存在什么问题？性能较慢，读取中文字符输出无法避免乱码问题。</p>
+<p>每次读取一个字节数组存在什么问题？读取的性能得到了提升，读取中文字符输出无法避免乱码问题。</p>
+<p>所以，官方为字节输入流InputStream提供了如下API，可以直接把文件的全部数据读取到一个字节数组中</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public byte[] readAllBytes() throws IOException</td>
+<td>直接将当前字节输入流对应的文件对象的字节数据装到一个字节数组返回</td>
+</tr>
+</tbody></table>
+<p>如何使用字节输入流读取中文内容输出不乱码呢？</p>
+<p>一次性读取完全部字节。可以定义与文件一样大的字节数组读取，也可以使用官方API.</p>
+<p>直接把文件数据全部读取到一个字节数组可以避免乱码，是否存在问题？</p>
+<p>如果文件过大，定义的字节数组可能引起内存溢出。</p>
+<h4 id="2、字节输出流"><a href="#2、字节输出流" class="headerlink" title="2、字节输出流"></a>2、字节输出流</h4><p>文件字节输出流：<strong>FileOutputStream</strong></p>
+<p>作用：以内存为基准，把内存中的数据以字节的形式写出到磁盘文件中去的流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileOutputStream(File file)</td>
+<td>创建字节输出流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileOutputStream(File file，boolean append)</td>
+<td>创建字节输出流管道与源文件对象接通，可追加数据</td>
+</tr>
+<tr>
+<td>public FileOutputStream(String filepath)</td>
+<td>创建字节输出流管道与源文件路径接通</td>
+</tr>
+<tr>
+<td>public FileOutputStream(String filepath，boolean append)</td>
+<td>创建字节输出流管道与源文件路径接通，可追加数据</td>
+</tr>
+</tbody></table>
+<p>文件字节输出流（FileOutputStream）写数据出去的API：</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void write(int a)</td>
+<td>写一个字节出去</td>
+</tr>
+<tr>
+<td>public void write(byte[] buffer)</td>
+<td>写一个字节数组出去</td>
+</tr>
+<tr>
+<td>public void write(byte[] buffer , int pos , int len)</td>
+<td>写一个字节数组的一部分出去。</td>
+</tr>
+</tbody></table>
+<p>流的关闭与刷新：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flush()</td>
+<td>刷新流，还可以继续写数据</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭流，释放资源，但是在关闭之前会先刷新流。一旦关闭，就不能再写数据</td>
+</tr>
+</tbody></table>
+<p>字节输出流如何实现写出去的数据能换行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.write(“\r\n”.getBytes())</span><br></pre></td></tr></table></figure>
+
+<p>如何让写出去的数据能成功生效？</p>
+<p>flush()刷新数据close()方法是关闭流，<strong>关闭包含刷新</strong>，关闭后流不可以继续使用了。</p>
+<p>字节流适合做一切文件数据的拷贝吗？</p>
+<p>任何文件的底层都是字节，拷贝是一字不漏的转移字节，只要前后文件格式、编码一致没有任何问题。</p>
+<p>资源释放的方式：</p>
+<p>try-catch-finally</p>
+<p>finally：放在try-catch后面的，无论是正常执行还是异常执行代码，最后一定要执行，除非JVM退出。</p>
+<p>作用：一般用于进行最后的资源释放操作（专业级做法）</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719110829571.png"></p>
+<p>try-catch-resource</p>
+<p>自动释放资源、代码简洁</p>
+<h4 id="3、字符输入流"><a href="#3、字符输入流" class="headerlink" title="3、字符输入流"></a>3、字符输入流</h4><p>读取中文输出，哪个流更合适，为什么？</p>
+<p>字符流更合适，最小单位是按照单个字符读取的。</p>
+<p>文件字符输入流：<strong>FileReader</strong></p>
+<p>作用：以内存为基准，把磁盘文件中的数据以字符的形式读取到内存中去。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileReader(File file)</td>
+<td>创建字符输入流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileReader(String pathname)</td>
+<td>创建字符输入流管道与源文件路径接通</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int read()</td>
+<td>每次读取一个字符返回，如果字符已经没有可读的返回-1</td>
+</tr>
+<tr>
+<td>public int read(char[] buffer)</td>
+<td>每次读取一个字符数组，返回读取的字符个数，如果字符已经没有可读的返回-1</td>
+</tr>
+</tbody></table>
+<p>字符流的好处。每次读取一个字符存在什么问题？</p>
+<p>读取中文字符不会出现乱码（如果代码文件编码一致）、性能较慢</p>
+<p>每次读取一个字符数组的优势？</p>
+<p>读取的性能得到了提升、读取中文字符输出不会乱码。</p>
+<h4 id="4、字符输出流"><a href="#4、字符输出流" class="headerlink" title="4、字符输出流"></a>4、字符输出流</h4><p>文件字符输出流：<strong>FileWriter</strong></p>
+<p>作用：以内存为基准，把内存中的数据以字符的形式写出到磁盘文件中去的流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public FileWriter(File file)</td>
+<td>创建字符输出流管道与源文件对象接通</td>
+</tr>
+<tr>
+<td>public FileWriter(File file，boolean append)</td>
+<td>创建字符输出流管道与源文件对象接通，可追加数据</td>
+</tr>
+<tr>
+<td>public FileWriter(String filepath)</td>
+<td>创建字符输出流管道与源文件路径接通</td>
+</tr>
+<tr>
+<td>public FileWriter(String filepath，boolean append)</td>
+<td>创建字符输出流管道与源文件路径接通，可追加数据</td>
+</tr>
+</tbody></table>
+<p>文件字符输出流（FileWriter）写数据出去的API</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(int c)</td>
+<td>写一个字符</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf)</td>
+<td>写入一个字符数组</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf, int off, int len)</td>
+<td>写入字符数组的一部分</td>
+</tr>
+<tr>
+<td>void write(String str)</td>
+<td>写一个字符串</td>
+</tr>
+<tr>
+<td>void write(String str, int off, int len)</td>
+<td>写一个字符串的一部分</td>
+</tr>
+</tbody></table>
+<p>流的关闭与刷新</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flush()</td>
+<td>刷新流，还可以继续写数据（冲洗）</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭流，释放资源，但是在关闭之前会先刷新流。一旦关闭，就不能再写数据</td>
+</tr>
+</tbody></table>
+<p>字符输出流如何实现写出去的数据能换行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fw.write(“\r\n”)</span><br></pre></td></tr></table></figure>
+
+<p>如何让写出去的数据能成功生效？</p>
+<p>flush()刷新数据close()方法是关闭流，<strong>关闭包含刷新</strong>，关闭后流不可以继续使用了。</p>
+<h4 id="5、小结"><a href="#5、小结" class="headerlink" title="5、小结"></a>5、小结</h4><p> 字节流、字符流的使用场景总结？</p>
+<p><strong>字节流</strong>适合做一切<strong>文件数据的拷贝</strong>（音视频，文本）</p>
+<p>字节流不适合读取中文内容输出</p>
+<p><strong>字符流</strong>适合做<strong>文本文件的操作</strong>（读，写）</p>
+<h4 id="6、缓冲流"><a href="#6、缓冲流" class="headerlink" title="6、缓冲流"></a>6、缓冲流</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719111717663.png"></p>
+<p>缓冲流也称为高效流、或者高级流。之前学习的字节流可以称为原始流。</p>
+<p>作用：<strong>缓冲流自带缓冲区、可以提高原始字节流、字符流读写数据的性能</strong></p>
+<h5 id="①字节缓冲流"><a href="#①字节缓冲流" class="headerlink" title="①字节缓冲流"></a>①字节缓冲流</h5><p>字节缓冲输入流：BufferedInputStream，自带8KB缓冲区，提高字节输入流读取数据的性能。 </p>
+<p>字节缓冲输出流：BufferedOutputStream，自带8KB缓冲区，提高字节输出流读取数据的性能。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedInputStream(InputStream is)</td>
+<td>可以把低级的字节输入流包装成一个高级的缓冲字节输入流管道，从而提高字节输入流读数据的性能</td>
+</tr>
+<tr>
+<td>public BufferedOutputStream(OutputStream os)</td>
+<td>可以把低级的字节输出流包装成一个高级的缓冲字节输出流，从而提高写数据的性能</td>
+</tr>
+</tbody></table>
+<p>推荐使用哪种方式提高字节流读写数据的性能？</p>
+<p>建议使用字节缓冲输入流、字节缓冲输出流，结合字节数组的方式，目前来看是性能最优的组合。</p>
+<h5 id="②字符缓冲流"><a href="#②字符缓冲流" class="headerlink" title="②字符缓冲流"></a>②字符缓冲流</h5><p>字符缓冲输入流：BufferedReader</p>
+<p>作用：提高字符输入流读取数据的性能，除此之外多了<strong>按照行读取数据</strong>的功能。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedReader(Reader r)</td>
+<td>可以把低级的字符输入流包装成一个高级的缓冲字符输入流管道，从而提高字符输入流读数据的性能</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输入流新增功能</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public String readLine()</td>
+<td>读取一行数据返回，如果读取没有完毕，无行可读返回null</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输出流：BufferedWriter</p>
+<p>作用：提高字符输出流写取数据的性能，除此之外多了<strong>换行功能</strong></p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public BufferedWriter(Writer w)</td>
+<td>可以把低级的字符输出流包装成一个高级的缓冲字符输出流管道，从而提高字符输出流写数据的性能</td>
+</tr>
+</tbody></table>
+<p>字符缓冲输出流新增功能</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void newLine()</td>
+<td>换行操作</td>
+</tr>
+</tbody></table>
+<h4 id="7、转换流"><a href="#7、转换流" class="headerlink" title="7、转换流"></a>7、转换流</h4><p>字符流直接读取文本内容：</p>
+<p>必须文件和代码编码一致才不会乱码</p>
+<p>如果文件和代码编码不一致，读取将出现乱码。</p>
+<p>如果如何解决呢？</p>
+<p>使用字符输入转换流可以提取文件（GBK）的原始字节流，原始字节不会存在问题。然后把字节流以指定编码转换成字符输入流，这样字符输入流中的字符就不乱码</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719112719923.png"></p>
+<h5 id="①字符输入转换流"><a href="#①字符输入转换流" class="headerlink" title="①字符输入转换流"></a>①字符输入转换流</h5><p>字符输入转换流：InputStreamReader，可以把原始的字节流按照指定编码转换成字符输入流。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public InputStreamReader(InputStream is)</td>
+<td>可以把原始的字节流按照代码默认编码转换成字符输入流。几乎不用，与默认的FileReader一样。</td>
+</tr>
+<tr>
+<td>public InputStreamReader(InputStream is ，String charset)</td>
+<td>可以把原始的字节流按照指定编码转换成字符输入流，这样字符流中的字符就不乱码了(重点)</td>
+</tr>
+</tbody></table>
+<h5 id="②字符输入转换流"><a href="#②字符输入转换流" class="headerlink" title="②字符输入转换流"></a>②字符输入转换流</h5><p>字符输入转换流：OutputStreamWriter，可以把字节输出流按照指定编码转换成字符输出流</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public OutputStreamWriter(OutputStream os)</td>
+<td>可以把原始的字节输出流按照代码默认编码转换成字符输出流。几乎不用。</td>
+</tr>
+<tr>
+<td>public OutputStreamWriter(OutputStream os，String charset)</td>
+<td>可以把原始的字节输出流按照指定编码转换成字符输出流(重点)</td>
+</tr>
+</tbody></table>
+<h4 id="8、序列化对象"><a href="#8、序列化对象" class="headerlink" title="8、序列化对象"></a>8、序列化对象</h4><p>序列化对象的要求是怎么样的？对象必须实现序列化接口</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113014328.png"></p>
+<h5 id="①对象序列化"><a href="#①对象序列化" class="headerlink" title="①对象序列化"></a>①对象序列化</h5><p>使用到的流是对象字节输出流：ObjectOutputStream</p>
+<p>作用：以内存为基准，把内存中的对象存储到磁盘文件中去，称为对象序列化。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public ObjectOutputStream(OutputStream out)</td>
+<td>把低级字节输出流包装成高级的对象字节输出流</td>
+</tr>
+</tbody></table>
+<p>ObjectOutputStream序列化方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public final void writeObject(Object obj)</td>
+<td>把对象写出去到对象序列化流的文件中去</td>
+</tr>
+</tbody></table>
+<h5 id="②对象反序列化"><a href="#②对象反序列化" class="headerlink" title="②对象反序列化"></a>②对象反序列化</h5><p>使用到的流是对象字节输入流：ObjectInputStream</p>
+<p>作用：以内存为基准，把存储到磁盘文件中去的对象数据恢复成内存中的对象，称为对象反序列化。</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public ObjectInputStream(InputStream out)</td>
+<td>把低级字节输如流包装成高级的对象字节输入流</td>
+</tr>
+</tbody></table>
+<p>ObjectInputStream序列化方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Object readObject()</td>
+<td>把存储到磁盘文件中去的对象数据恢复成内存中的对象返回</td>
+</tr>
+</tbody></table>
+<h4 id="9、打印流"><a href="#9、打印流" class="headerlink" title="9、打印流"></a>9、打印流</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113412700.png"></p>
+<p>作用：打印流可以实现方便、高效的打印数据到文件中去。</p>
+<p>打印流一般是指：PrintStream，PrintWriter两个类。</p>
+<p>可以实现打印什么数据就是什么数据，例如打印整数97写出去就是97，打印boolean的true，写出去就是true。</p>
+<h5 id="①PrintStream"><a href="#①PrintStream" class="headerlink" title="①PrintStream"></a>①PrintStream</h5><table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public PrintStream(OutputStream os)</td>
+<td>打印流直接通向字节输出流管道</td>
+</tr>
+<tr>
+<td>public PrintStream(File f)</td>
+<td>打印流直接通向文件对象</td>
+</tr>
+<tr>
+<td>public PrintStream(String filepath)</td>
+<td>打印流直接通向文件路径</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void print(Xxx xx)</td>
+<td>打印任意类型的数据出去</td>
+</tr>
+</tbody></table>
+<h5 id="②PrintWriter"><a href="#②PrintWriter" class="headerlink" title="②PrintWriter"></a>②PrintWriter</h5><table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public PrintWriter(OutputStream os)</td>
+<td>打印流直接通向字节输出流管道</td>
+</tr>
+<tr>
+<td>public PrintWriter (Writer w)</td>
+<td>打印流直接通向字符输出流管道</td>
+</tr>
+<tr>
+<td>public PrintWriter (File f)</td>
+<td>打印流直接通向文件对象</td>
+</tr>
+<tr>
+<td>public PrintWriter (String filepath)</td>
+<td>打印流直接通向文件路径</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void print(Xxx xx)</td>
+<td>打印任意类型的数据出去</td>
+</tr>
+</tbody></table>
+<p>PrintStream和PrintWriter的区别</p>
+<p>打印数据功能上是一模一样的，都是使用方便，性能高效（核心优势）</p>
+<p>PrintStream继承自字节输出流OutputStream，支持<strong>写字节数据</strong>的方法。</p>
+<p>PrintWriter继承自字符输出流Writer，支持<strong>写字符数据</strong>出去。</p>
+<h5 id="③输出语句的重定向"><a href="#③输出语句的重定向" class="headerlink" title="③输出语句的重定向"></a>③输出语句的重定向</h5><p>属于打印流的一种应用，可以把输出语句的打印位置改到文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PrintStream</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="string">&quot;文件地址&quot;</span>)</span><br><span class="line">System.setOut(ps);</span><br></pre></td></tr></table></figure>
+
+<h4 id="10、IO框架"><a href="#10、IO框架" class="headerlink" title="10、IO框架"></a>10、IO框架</h4><p>commons-io概述</p>
+<p>commons-io是apache开源基金组织提供的一组有关IO操作的类库，可以提高IO功能开发的效率。</p>
+<p>commons-io工具包提供了很多有关io操作的类。有两个主要的类FileUtils, IOUtils</p>
+<p>FileUtils主要有如下方法:</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String readFileToString(File file, String encoding)</td>
+<td>读取文件中的数据, 返回字符串</td>
+</tr>
+<tr>
+<td>void copyFile(File srcFile, File destFile)</td>
+<td>复制文件。</td>
+</tr>
+<tr>
+<td>void copyDirectoryToDirectory(File srcDir, File destDir)</td>
+<td>复制文件夹。</td>
+</tr>
+</tbody></table>
+
       
 
       
@@ -361,10 +896,335 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2>
-        
-          <a class="article-more-a" href="/2023/07/31/%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/#more">more >></a>
-        
+        <span id="more"></span>
+
+<p><strong>数组与集合的不同</strong></p>
+<p>1、数组和集合的元素存储的个数问题。数组定义后类型确定，长度固定集合类型可以不固定，大小是可变的。</p>
+<p>2、数组和集合存储元素的类型问题。数组可以存储基本类型和引用类型的数据。集合只能存储引用数据类型的数据。</p>
+<p>3、数组和集合适合的场景。数组适合做数据个数和类型确定的场景。集合适合做数据个数不确定，且要做增删元素的场景，集合种类更多，功能更强大。</p>
+<p>如何约定集合存储数据的类型，需要注意什么？</p>
+<p>集合支持泛型。集合和泛型不支持基本类型，只支持引用数据类型。</p>
+<p><strong>集合类体系结构</strong></p>
+<p>①Collection单列集合，每个元素（数据）只包含一个值。</p>
+<p>②Map双列集合，每个元素包含两个值（键值对）。</p>
+<h4 id="1、collection单列集合"><a href="#1、collection单列集合" class="headerlink" title="1、collection单列集合"></a>1、collection单列集合</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719093737995.png"></p>
+<h5 id="List系列集合："><a href="#List系列集合：" class="headerlink" title="List系列集合："></a>List系列集合：</h5><p>添加的元素是<strong>有序、可重复、有索引</strong>。ArrayList、LinekdList 。</p>
+<p>List集合特有方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void add(int index,E element)</td>
+<td>在此集合中的指定位置插入指定的元素</td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td>删除指定索引处的元素，返回被删除的元素</td>
+</tr>
+<tr>
+<td>E set(int index,E element)</td>
+<td>修改指定索引处的元素，返回被修改的元素</td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td>返回指定索引处的元素</td>
+</tr>
+</tbody></table>
+<p>List集合的遍历方式有几种？</p>
+<p>(1)迭代器：</p>
+<p>遍历就是一个一个的把容器中的元素访问一遍。 迭代器在Java中的代表是Iterator，迭代器是集合的专用的遍历方式。</p>
+<p>Collection集合获取迭代器</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Iterator<E></strong> <strong>iterator()</strong></td>
+<td>返回集合中的迭代器对象，该迭代器对象默认指向当前集合的0索引</td>
+</tr>
+</tbody></table>
+<p>Iterator中的常用方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean hasNext()</td>
+<td>询问当前位置是否有元素存在，存在返回true ,不存在返回false</td>
+</tr>
+<tr>
+<td>E next()</td>
+<td>获取当前位置的元素，并同时将迭代器对象移向下一个位置，注意防止取出越界。</td>
+</tr>
+</tbody></table>
+<p>举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;String&gt; it = lists.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">ele</span> <span class="operator">=</span> it.next();    </span><br><span class="line">    System.out.println(ele);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(2)增强for循环：</p>
+<p>举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Collection&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(String ele : list) &#123;</span><br><span class="line">    System.out.println(ele);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(3)Lambda表达式：</p>
+<p>得益于JDK 8开始的新技术Lambda表达式，提供了一种更简单、更直接的遍历集合的方式。</p>
+<p>Collection结合Lambda遍历的API</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>default void forEach(Consumer&lt;? super T&gt; action):</td>
+<td>结合lambda遍历集合</td>
+</tr>
+</tbody></table>
+<p>举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collection&lt;String&gt; lists = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">lists.forEach(<span class="keyword">new</span> <span class="title class_">Consumer</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(String s)</span> &#123; </span><br><span class="line">        System.out.println(s);   </span><br><span class="line">    &#125;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码可简化成如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lists.forEach(s -&gt; &#123; </span><br><span class="line">    System.out.println(s);   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>(4)for循环（因为List集合存在索引）</p>
+<h6 id="①ArrayList"><a href="#①ArrayList" class="headerlink" title="①ArrayList"></a>①ArrayList</h6><p>ArrayList底层是基于<strong>数组</strong>实现的，<strong>查询元素快，增删相对慢</strong>的<strong>动态数组</strong>。</p>
+<p>怎么去统一ArrayList集合操作的元素类型，泛型需要注意什么？</p>
+<p>使用泛型：&lt;数据类型&gt;创建集合对象都应该使用泛型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list1 = <span class="keyword">new</span>  <span class="title class_">ArrayList</span>();</span><br></pre></td></tr></table></figure>
+
+<p>泛型只能支持引用数据类型，不支持基本数据类型。</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public E get(int index)</td>
+<td>返回指定索引处的元素</td>
+</tr>
+<tr>
+<td>public int size()</td>
+<td>返回集合中的元素的个数</td>
+</tr>
+<tr>
+<td>public E remove(int index)</td>
+<td>删除指定索引处的元素，返回被删除的元素</td>
+</tr>
+<tr>
+<td>public boolean remove(Object o)</td>
+<td>删除指定的元素，返回删除是否成功</td>
+</tr>
+<tr>
+<td>public E set(int index,E element)</td>
+<td>修改指定索引处的元素，返回被修改的元素</td>
+</tr>
+</tbody></table>
+<h6 id="②LinkedList"><a href="#②LinkedList" class="headerlink" title="②LinkedList"></a>②LinkedList</h6><p>LinkedList的特点底层数据结构是<strong>双链表</strong>，<strong>查询元素慢，首尾操作的速度是极快的</strong>，所以多了很多首尾操作的特有API。</p>
+<p>LinkedList集合的特有功能</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void addFirst(E e)</td>
+<td>在该列表开头插入指定的元素</td>
+</tr>
+<tr>
+<td>public void addLast(E e)</td>
+<td>将指定的元素追加到此列表的末尾</td>
+</tr>
+<tr>
+<td>public E getFirst()</td>
+<td>返回此列表中的第一个元素</td>
+</tr>
+<tr>
+<td>public E getLast()</td>
+<td>返回此列表中的最后一个元素</td>
+</tr>
+<tr>
+<td>public E removeFirst()</td>
+<td>从此列表中删除并返回第一个元素</td>
+</tr>
+<tr>
+<td>public E removeLast()</td>
+<td>从此列表中删除并返回最后一个元素</td>
+</tr>
+</tbody></table>
+<h5 id="Set系列集合："><a href="#Set系列集合：" class="headerlink" title="Set系列集合："></a>Set系列集合：</h5><p>添加的元素是<strong>无序、不重复、无索引</strong>。</p>
+<p>HashSet: 无序、不重复、无索引；</p>
+<p>LinkedHashSet: 有序、不重复、无索引。</p>
+<p>TreeSet：按照大小默认升序排序、不重复、无索引。</p>
+<p>Set集合的功能上基本上与Collection的API一致。</p>
+<h6 id="①HashSet"><a href="#①HashSet" class="headerlink" title="①HashSet"></a>①HashSet</h6><p>HashSet底层原理</p>
+<p>HashSet集合<strong>无序</strong>、<strong>不重复</strong>、无索引,底层采取<strong>哈希表</strong>存储的数据。哈希表是一种对于<strong>增删改查数据性能都较好</strong>的结构。</p>
+<p>哈希表的组成:JDK8之前的，底层使用数组+链表组成;JDK8开始后，底层采用数组+链表+红黑树组成。</p>
+<p>哈希表的详细流程</p>
+<p> 创建一个默认长度16，默认加载因为0.75的数组，数组名table 根据元素的哈希值跟数组的长度计算出应存入的位置 判断当前位置是否为null，如果是null直接存入，如果位置不为null，表示有元素，  则调用equals方法比较属性值，如果一样，则不存，如果不一样，则存入数组。 当数组存满到16*0.75&#x3D;12时，就自动扩容，每次扩容原先的两倍</p>
+<p>如果希望Set集合认为2个内容相同的对象是重复的应该怎么办？重写对象的hashCode和equals方法。</p>
+<p><strong>LinkedHashSet集合</strong>的特点和原理是怎么样的？</p>
+<p><strong>有序</strong>、不重复、无索引底层基于<strong>哈希表</strong>，使用<strong>双链表</strong>记录添加顺序。</p>
+<h6 id="②TreeSet"><a href="#②TreeSet" class="headerlink" title="②TreeSet"></a>②TreeSet</h6><p>TreeSet集合的特点是怎么样的？</p>
+<p><strong>可排序、不重复、无索引</strong>底层基于<strong>红黑树</strong>实现排序，<strong>增删改查性能较好</strong></p>
+<p>TreeSet集合默认的规则</p>
+<p>对于数值类型：Integer , Double，官方默认按照大小进行升序排序。</p>
+<p>对于字符串类型：默认按照首字符的编号升序排序。对于自定义类型如Student对象，TreeSet无法直接排序。</p>
+<p>TreeSet集合自定义排序规则有方式2种：</p>
+<p>类实现Comparable接口，重写比较规则。集合自定义Comparator比较器对象，重写比较规则。</p>
+<p><strong>例题：</strong></p>
+<p>给你两个下标从 0 开始的整数数组 nums1 和 nums2 ，请你返回一个长度为 2 的列表 answer ，其中：</p>
+<p>answer[0] 是 nums1 中所有 不 存在于 nums2 中的 不同 整数组成的列表。<br>answer[1] 是 nums2 中所有 不 存在于 nums1 中的 不同 整数组成的列表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">findDifference</span><span class="params">(<span class="type">int</span>[] nums1, <span class="type">int</span>[] nums2)</span> &#123;</span><br><span class="line">        <span class="comment">//List&lt;List&lt;Integer&gt;&gt;是存【int类型数据的列表】类型数据的列表</span></span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//list1和list2存储不同于对方的整数</span></span><br><span class="line">        List&lt;Integer&gt; list1 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; list2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; set1 = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; set2 = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//先将nums1和nums2中的数据存入哈希表中</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums1.length; i++) set1.add(nums1[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums2.length; i++) set2.add(nums2[i]);</span><br><span class="line">        <span class="comment">//再将不同于对方的整数存入list1，list2中</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums1.length; i++) &#123;</span><br><span class="line">            <span class="comment">//防止重复添加</span></span><br><span class="line">            <span class="keyword">if</span> (!set2.contains(nums1[i]) &amp;&amp; !list1.contains(nums1[i])) list1.add(nums1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums2.length; i++) &#123;</span><br><span class="line">            <span class="comment">//防止重复添加</span></span><br><span class="line">            <span class="keyword">if</span> (!set1.contains(nums2[i]) &amp;&amp; !list2.contains(nums2[i])) list2.add(nums2[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        ans.add(list1);</span><br><span class="line">        ans.add(list2);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], nums2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br><span class="line">输出：[[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>   1.如果希望元素可以重复，有序，又有索引，索引查询要快？用ArrayList集合，基于数组的。（用的最多）</p>
+<ol start="2">
+<li>如果希望元素可以重复，有序，又有索引，增删首尾操作快？用LinkedList集合，基于链表的。</li>
+<li>如果希望增删改查都快，但是元素不重复、无序、无索引。用HashSet集合，基于哈希表的。</li>
+<li>如果希望增删改查都快，但是元素不重复、有序、无索引。用LinkedHashSet集合，基于哈希表和双链表。</li>
+<li>如果要对对象进行排序。用TreeSet集合，基于红黑树。后续也可以用List集合实现排序。</li>
+</ol>
+<p>泛型</p>
+<h4 id="2、Map双列集合"><a href="#2、Map双列集合" class="headerlink" title="2、Map双列集合"></a>2、Map双列集合</h4><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719101508624.png"></p>
+<p>Map是双列集合的祖宗接口，它的功能是全部双列集合都可以继承使用的。</p>
+<p>Map API:</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V put(K key,V value)</td>
+<td>添加元素</td>
+</tr>
+<tr>
+<td>V remove(Object key)</td>
+<td>根据键删除键值对元素</td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td>移除所有的键值对元素</td>
+</tr>
+<tr>
+<td>boolean containsKey(Object key)</td>
+<td>判断集合是否包含指定的键</td>
+</tr>
+<tr>
+<td>boolean containsValue(Object value)</td>
+<td>判断集合是否包含指定的值</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td>判断集合是否为空</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>集合的长度，也就是集合中键值对的个数</td>
+</tr>
+</tbody></table>
+<p><strong>使用最多的Map集合是HashMap。</strong></p>
+<p>Map集合的特点:</p>
+<p>HashMap:元素按照键是<strong>无序</strong>，不重复，无索引，值不做要求。（与Map体系一致）</p>
+<p>LinkedHashMap:元素按照键是<strong>有序</strong>，不重复，无索引，值不做要求。</p>
+<p>TreeMap：元素按照建是<strong>排序</strong>，不重复，无索引的，值不做要求。</p>
+<p>Map集合的遍历三种方式：</p>
+<p>遍历HashMap取key:valued的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历HashMap取key:valued的值，HashMap是无序的，所以遍历的顺序可能与添加键值对的顺序不同。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashMap&lt;String, String&gt; hashMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    hashMap.put(<span class="string">&quot;zdy&quot;</span>,<span class="string">&quot;first&quot;</span>);</span><br><span class="line">    hashMap.put(<span class="string">&quot;lyd&quot;</span>,<span class="string">&quot;second&quot;</span>);</span><br><span class="line">    hashMap.put(<span class="string">&quot;xxx&quot;</span>, <span class="string">&quot;third&quot;</span>);</span><br><span class="line">    <span class="comment">//方法一：使用keySet()方法遍历：</span></span><br><span class="line">    <span class="comment">/*我们使用hashMap.keySet()获取了HashMap中所有的键的集合。然后，通过for循环遍历这个键的集合，每次迭代中，我们从hashMap中根据当前的键key使用hashMap.get(key)方法来获取对应的值value。最后，我们打印出键和值的内容。需要注意的是，HashMap是无序的，所以遍历的顺序可能与添加键值对的顺序不同。如果你需要按照特定顺序遍历HashMap，可以考虑使用LinkedHashMap，它会保持元素的插入顺序。*/</span></span><br><span class="line">    <span class="keyword">for</span> (String key : hashMap.keySet()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> hashMap.get(key);</span><br><span class="line">        System.out.println(<span class="string">&quot;Key: &quot;</span> + key + <span class="string">&quot;, Value: &quot;</span> + value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法二：使用entrySet()方法遍历：</span></span><br><span class="line">    <span class="comment">/*我们使用hashMap.entrySet()获取了HashMap中所有的键值对的集合。然后，通过for循环遍历这个键值对集合，每次迭代中，我们从entry中获取键使用entry.getKey()方法，获取对应的值使用entry.getValue()方法。最后，我们打印出键和值的内容。相比于使用keySet()方法遍历，使用entrySet()方法遍历的好处是，它不会多次访问HashMap中的值。在使用keySet()遍历时，每次通过键获取值时都需要再次访问HashMap，而使用entrySet()遍历时，我们已经直接拿到了键值对的引用，避免了多次访问。因此，在遍历时涉及到大量数据或者复杂的计算时，使用entrySet()方法可以提高性能。*/</span></span><br><span class="line">    <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : hashMap.entrySet()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">        <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">        System.out.println(<span class="string">&quot;Key: &quot;</span> + key + <span class="string">&quot;, Value: &quot;</span> + value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法三：使用Java 8引入的Stream API来遍历HashMap</span></span><br><span class="line">    <span class="comment">//这里使用forEach方法，它接受一个lambda表达式，该lambda表达式对每个键值对执行相应的操作</span></span><br><span class="line">    hashMap.forEach((key, value) -&gt; &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Key: &quot;</span> + key + <span class="string">&quot;, Value: &quot;</span> + value);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果：</span></span><br><span class="line">Key: lyd, Value: second</span><br><span class="line">Key: xxx, Value: third</span><br></pre></td></tr></table></figure>
+
+<h6 id="①HashMap"><a href="#①HashMap" class="headerlink" title="①HashMap"></a>①HashMap</h6><p>1、HashMap的特点和底层原理</p>
+<p>由键决定：无序、不重复、无索引。HashMap底层是<strong>哈希表</strong>结构的。依赖hashCode方法和equals方法保证键的唯一。如果键要存储的是自定义对象，需要重写hashCode和equals方法。基于哈希表。<strong>增删改查的性能都较好</strong>。</p>
+<p>LinkedHashMap集合概述和特点</p>
+<p>由键决定：有序、不重复、无索引。这里的有序指的是保证存储和取出的元素顺序一致原理：底层数据结构是依然<strong>哈希表</strong>，只是每个键值对元素又额外的<strong>多了一个双链表</strong>的机制记录存储的顺序。</p>
+<h6 id="②TreeMap"><a href="#②TreeMap" class="headerlink" title="②TreeMap"></a>②TreeMap</h6><p>TreeMap集合的特点是怎么样的？</p>
+<p>根据键可排序、不重复、无索引底层基于<strong>红黑树</strong>实现排序，<strong>增删改查性能较好</strong></p>
+<p>TreeMap集合自定义排序规则有方式2种</p>
+<p>类实现Comparable接口，重写比较规则。集合自定义Comparator比较器对象，重写比较规则。</p>
+<h6 id="③Properties属性集对象"><a href="#③Properties属性集对象" class="headerlink" title="③Properties属性集对象"></a>③Properties属性集对象</h6><p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/image-20230719113859299.png"></p>
+<p>Properties核心作用：</p>
+<p>Properties代表的是一个属性文件，可以把自己对象中的键值对信息存入到一个属性文件中去。</p>
+<p>属性文件：后缀是.properties结尾的文件,里面的内容都是 key&#x3D;value，后续做系统配置信息的。</p>
+<p>Properties的API:</p>
+<p>Properties和IO流结合的方法：</p>
+<table>
+<thead>
+<tr>
+<th>构造器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void load(InputStream inStream)</td>
+<td>从输入字节流读取属性列表（键和元素对）</td>
+</tr>
+<tr>
+<td>void load(Reader reader)</td>
+<td>从输入字符流读取属性列表（键和元素对）</td>
+</tr>
+<tr>
+<td>void store(OutputStream out, String comments)</td>
+<td>将此属性列表（键和元素对）写入此 Properties表中，以适合于使用 load(InputStream)方法的格式写入输出字节流</td>
+</tr>
+<tr>
+<td>void store(Writer writer, String comments)</td>
+<td>将此属性列表（键和元素对）写入此 Properties表中，以适合使用 load(Reader)方法的格式写入输出字符流</td>
+</tr>
+<tr>
+<td>public Object setProperty(String key, String value)</td>
+<td>保存键值对（put）</td>
+</tr>
+<tr>
+<td>public String getProperty(String key)</td>
+<td>使用此属性列表中指定的键搜索属性值 (get)</td>
+</tr>
+<tr>
+<td>public Set<String> stringPropertyNames()</td>
+<td>所有键的名称的集合 (keySet())</td>
+</tr>
+</tbody></table>
+<p>Properties的作用？</p>
+<p>可以存储Properties属性集的键值对数据到属性文件中去：void store(Writer writer, String comments)</p>
+<p>可以加载属性文件中的数据到Properties对象中来：void load(Reader reader)</p>
+<h4 id="3、不可变集合"><a href="#3、不可变集合" class="headerlink" title="3、不可变集合"></a>3、不可变集合</h4><p>不可变集合的特点？</p>
+<p>定义完成后不可以修改，或者添加、删除</p>
+<p>如何创建不可变集合？</p>
+<p>List、Set、Map接口中，都存在of方法可以创建不可变集合。</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static <E> List<E> of(E…elements)</td>
+<td>创建一个具有指定元素的List集合对象</td>
+</tr>
+<tr>
+<td>static <E> Set<E> of(E…elements)</td>
+<td>创建一个具有指定元素的Set集合对象</td>
+</tr>
+<tr>
+<td>static &lt;K , V&gt;  Map&lt;K，V&gt; of(E…elements)</td>
+<td>创建一个具有指定元素的Map集合对象</td>
+</tr>
+</tbody></table>
+
       
 
       
