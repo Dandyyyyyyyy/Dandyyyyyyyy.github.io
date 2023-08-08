@@ -173,60 +173,59 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-你好-世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-饿了么app开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/">你好,世界</a>
+      <a class="article-title" href="/2023/08/08/%E9%A5%BF%E4%BA%86%E4%B9%88app%E5%BC%80%E5%8F%91/">SpringBoot</a>
     </h1>
   
 
         
-        <a href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/" class="archive-article-date">
-  	<time datetime="2023-07-19T07:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
+        <a href="/2023/08/08/%E9%A5%BF%E4%BA%86%E4%B9%88app%E5%BC%80%E5%8F%91/" class="archive-article-date">
+  	<time datetime="2023-08-08T08:10:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1>
-        
-          <a class="article-more-a" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/#more">more >></a>
-        
+        <h1 id="饿了么app开发"><a href="#饿了么app开发" class="headerlink" title="饿了么app开发"></a>饿了么app开发</h1><p>项目介绍：后端基于 SpringBoot，前端基于 Vue，主要使用 axios 的外卖平台。</p>
+<p>主要功能：</p>
+<p>1、框架搭建、登录、首页、商品列表页、购物车管理页</p>
+<p>2、注册、生成订单、订单列表、地址新增、地址修改、地址删除、地址列表、选择当前地址、确认支付、校验功能</p>
+<p>3、校验功能主要包括：手机号位数校验、手机号正确性校验、密码位数校验；</p>
+<p>主要工作：</p>
+<p>1、根据业务流程，将整个项目大体划分为注册、生成订单、新增地址、确认支付这 4 个部分 </p>
+<p>2、主要负责注册登录功能，并使用 hutool 包对手机号和密码进行正则校验。</p>
+<h2 id="注册模块："><a href="#注册模块：" class="headerlink" title="注册模块："></a>注册模块：</h2><p>除了实现简单的注册功能，我自己又加上了手机号和密码校验功能，在其中引入了hutool工具包，通过网上查找手机号的一些规则按照正则表达式校验，以及密码要求4~32位的字母、数字、下划线，并把正则表达式和校验规则封装成两个工具类，使用时只需要在UserServiceImpl中调用方法即可。</p>
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/%E5%9B%BE%E7%89%871.png"></p>
+<img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/图片2.png" style="zoom:80%;" />
+
+<img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/图片3.png" style="zoom:80%;" />
+
+<img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/图片4.png" style="zoom: 67%;" />
+
+<img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/图片5.png" style="zoom:80%;" />
+
+<h2 id="生成订单："><a href="#生成订单：" class="headerlink" title="生成订单："></a>生成订单：</h2><h2 id="地址管理："><a href="#地址管理：" class="headerlink" title="地址管理："></a>地址管理：</h2>
       
 
       
     </div>
     <div class="article-info article-info-index">
       
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
       
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/博客介绍//" class="article-tag-list-link color5">博客介绍</a>
+        			<a href="/categories/项目实战//" class="article-tag-list-link color5">项目实战</a>
         		</li>
       		
 		</ul>
@@ -235,7 +234,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/08/08/%E9%A5%BF%E4%BA%86%E4%B9%88app%E5%BC%80%E5%8F%91/">展开全文 >></a>
         </p>
       
 
@@ -616,6 +615,98 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/07/31/IO%E6%B5%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-你好-世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/">你好,世界</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/" class="archive-article-date">
+  	<time datetime="2023-07-19T07:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1>
+        
+          <a class="article-more-a" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/博客介绍//" class="article-tag-list-link color5">博客介绍</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/">展开全文 >></a>
         </p>
       
 
