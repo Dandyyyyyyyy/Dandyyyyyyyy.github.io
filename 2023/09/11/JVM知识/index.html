@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Dandy</title>
+  <title>JVM | Dandy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Diligence is rewording">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dandy">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="JVM知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="http://example.com/2023/09/11/JVM%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Dandy">
-<meta property="og:description" content="Diligence is rewording">
+<meta property="og:description" content="JVM知识">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911203507.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911185252.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911191103.png">
+<meta property="og:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911195827.png">
+<meta property="article:published_time" content="2023-09-11T10:36:31.000Z">
+<meta property="article:modified_time" content="2023-09-11T13:01:31.790Z">
 <meta property="article:author" content="Dandy.">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911203507.png">
   
     <link rel="alternative" href="/atom.xml" title="Dandy" type="application/atom+xml">
   
@@ -172,74 +179,100 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-JVM知识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/11/07/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2023-11-07T02:41:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/11/07/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    <h1 class="article-title" itemprop="name">
+      JVM
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/09/11/JVM%E7%9F%A5%E8%AF%86/" class="archive-article-date">
+        
+        <a href="/2023/09/11/JVM%E7%9F%A5%E8%AF%86/" class="archive-article-date">
   	<time datetime="2023-09-11T10:36:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/11/JVM%E7%9F%A5%E8%AF%86/">JVM</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM知识"><a href="#JVM知识" class="headerlink" title="JVM知识"></a>JVM知识</h1><span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
-          
+
+<p><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911203507.png"></p>
+<h2 id="一、类加载器和双亲委派机制"><a href="#一、类加载器和双亲委派机制" class="headerlink" title="一、类加载器和双亲委派机制"></a>一、类加载器和双亲委派机制</h2><p>JVM为什么会抛出ClassNotFund异常？在抛出这个异常的时候JVM的类加载器做了什么工作？</p>
+<p>在介绍双亲委派机制的时候，不得不提ClassLoader（类加载器）。<br>  Java是运行在Java的虚拟机(JVM)中的，但是它是如何运行在JVM中了呢？我们在IDE中编写的Java源代码被编译器编译成.class的字节码文件。然后由我们得ClassLoader负责将这些class文件给加载到JVM中去执行。  </p>
+<h3 id="JVM类加载器"><a href="#JVM类加载器" class="headerlink" title="JVM类加载器"></a>JVM类加载器</h3><p>Bootstrap classLoader（启动类加载器）:主要负责加载核心的类库(java.lang.*等)，构造ExtClassLoader和APPClassLoader。</p>
+<p>ExtClassLoader（扩展类加载器）：主要负责加载jre&#x2F;lib&#x2F;ext目录下的一些扩展的jar。</p>
+<p>AppClassLoader（应用程序类加载器）：主要负责加载应用程序的主函数类。</p>
+<p>UserClassLoader（用户自定义加载器）：主要负责加载用户自定义路径下的类包。</p>
+<h3 id="双亲委派机制的原理"><a href="#双亲委派机制的原理" class="headerlink" title="双亲委派机制的原理"></a>双亲委派机制的原理</h3><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911185252.png" style="zoom:80%;" />
+
+<p>双亲委派机制是Java类加载器的一种工作模式。当一个Java类需要被加载时，Java虚拟机会先将加载请求传递给它的父类加载器，如果父类加载器无法找到该类，才会将加载请求传递给子类加载器。这个过程就像一个向上查找的层级结构，直到被找到或者抛出ClassNotFoundException异常。</p>
+<h3 id="双亲委派机制的作用"><a href="#双亲委派机制的作用" class="headerlink" title="双亲委派机制的作用"></a>双亲委派机制的作用</h3><p><strong>避免同一类被多次加载：</strong>双亲委派机制的作用在于这样可以避免类的冲突和数据不一致问题。例如，在一个Java应用程序中，如果同一个类被不同的类加载器加载，可能会导致不同的版本存在，从而导致运行时错误。通过双亲委派机制，Java虚拟机会保证同一个类只会被加载一次，这样可以避免这种错误的发生。</p>
+<p><strong>提高类加载的效率</strong>：因为在加载一个类时，Java虚拟机会优先查找父类加载器中是否已经加载了该类，如果已经加载，则直接返回已经加载的类对象。这样可以减少重复加载的开销，提高类加载的效率。</p>
+<h2 id="二、沙箱安全机制"><a href="#二、沙箱安全机制" class="headerlink" title="二、沙箱安全机制"></a>二、沙箱安全机制</h2><h3 id="沙箱安全机制原理"><a href="#沙箱安全机制原理" class="headerlink" title="沙箱安全机制原理"></a>沙箱安全机制原理</h3><p>Java安全模型的核心就是Java沙箱。沙箱机制就是讲Java代码限定在虚拟机JVM特定的运行范围中，并且严格限制代码对本地资源的访问，通过这样的措施来保证对代码的有效隔离，防止对本地系统造成破坏。通俗来说就是虚拟机把代码加载到拥有不同权限的域里，然后代码就拥有了该域的所有权限。这样就能控制不同代码拥有不同调用操作系统和本地资源的权限。</p>
+<p>沙箱主要限制系统资源访问，例如：CPU、内存、文件系统、网络。不同级别的啥想对这些资源访问的限制也可以不一样。</p>
+<img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911191103.png" style="zoom:80%;" />
+
+<h3 id="组成沙箱的基本组件"><a href="#组成沙箱的基本组件" class="headerlink" title="组成沙箱的基本组件"></a>组成沙箱的基本组件</h3><p>1.字节码校验器（bytecode verifier）：确保Java类文件遵循Java语言规范。可以帮助Java程序实现内存保护 。核心类不经过字节码校验<br>2.类装载器：其中类装载器在3个方面对Java沙箱起作用</p>
+<p>防止恶意代码干涉善意代码（双亲委派机制）<br>守护被信任的类库边界<br>它将代码归入保护域，确定了代码可以进行哪些操作</p>
+<h2 id="三、Native关键字"><a href="#三、Native关键字" class="headerlink" title="三、Native关键字"></a>三、Native关键字</h2><p>当java的作用范围达不到，会去调用底层C语言的库</p>
+<p>会进入本地方法栈，调用本地方法的本地接口 JNI（Java Native Interface）</p>
+<p> JNI作用：扩展Java的使用，融合不同编程语言为Java所用。</p>
+<p>它在内存区域中专门开辟了一块标记区域：Native Method Stack，登记native方法</p>
+<p>在最终执行的时候加载本地方法库中的方法通过JNI</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">start1</span><span class="params">()</span>;<span class="comment">//报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">start2</span><span class="params">()</span>;<span class="comment">//不报错</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、PC寄存器"><a href="#四、PC寄存器" class="headerlink" title="四、PC寄存器"></a>四、PC寄存器</h2><p>程序计数器（Program Counter Register）</p>
+<p>每个线程都有一个程序计数器，是线程私有的，就是一个指针，指向方法区中的方法字节码，在执行引擎读取下一条指令，是一个非常小的内存空间，几乎可以忽略不计。</p>
+<h2 id="五、方法区"><a href="#五、方法区" class="headerlink" title="五、方法区"></a>五、方法区</h2><p>方法区（Method Area）</p>
+<p>方法区是被所有线程共享，所有字段和方法字节码以及一些特殊方法，如静态变量、常量、类信息（构造函数、接口代码）、运行时的常量池也保存在该区域，属于共享空间，但是实例变量存在堆内存中，和方法区无关。</p>
+<h2 id="六、栈"><a href="#六、栈" class="headerlink" title="六、栈"></a>六、栈</h2><img src="https://dandy-1319793808.cos.ap-beijing.myqcloud.com/blog/20230911195827.png" style="zoom:80%;" />
+
+<h2 id="七、堆"><a href="#七、堆" class="headerlink" title="七、堆"></a>七、堆</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/likeme.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -252,332 +285,126 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://llllz-d.github.io/2023/09/11/JVM%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/09/10/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96/" class="archive-article-date">
-  	<time datetime="2023-09-10T02:52:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-10</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2023/11/07/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          软件测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/10/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringBoot+SSMP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/10/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96/">SpringBoot+SSMP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/项目实战//" class="article-tag-list-link color5">项目实战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">JVM知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、类加载器和双亲委派机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">JVM类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">双亲委派机制的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">双亲委派机制的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">二、沙箱安全机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">沙箱安全机制原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E6%B2%99%E7%AE%B1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">组成沙箱的基本组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Native%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.3.</span> <span class="toc-text">三、Native关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81PC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">四、PC寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="toc-number">1.5.</span> <span class="toc-text">五、方法区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A0%88"><span class="toc-number">1.6.</span> <span class="toc-text">六、栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%A0%86"><span class="toc-number">1.7.</span> <span class="toc-text">七、堆</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/08/08/%E9%A5%BF%E4%BA%86%E4%B9%88app%E5%BC%80%E5%8F%91/" class="archive-article-date">
-  	<time datetime="2023-08-08T08:10:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/08/%E9%A5%BF%E4%BA%86%E4%B9%88app%E5%BC%80%E5%8F%91/">SpringBoot</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/项目实战//" class="article-tag-list-link color5">项目实战</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/08/02/HTML-CSS/" class="archive-article-date">
-  	<time datetime="2023-08-02T08:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/02/HTML-CSS/">javaWeb</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/08/02/Threadlocal%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2023-08-02T02:54:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/02/Threadlocal%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/">线程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/07/31/Git/" class="archive-article-date">
-  	<time datetime="2023-07-31T08:21:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/07/31/Git/">Git</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/07/31/%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2023-07-31T07:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/07/31/%E9%9B%86%E5%90%88/">javaSE</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/07/31/IO%E6%B5%81/" class="archive-article-date">
-  	<time datetime="2023-07-31T07:10:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/07/31/IO%E6%B5%81/">javaSE</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识攻略//" class="article-tag-list-link color5">知识攻略</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/" class="archive-article-date">
-  	<time datetime="2023-07-19T07:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/07/19/%E4%BD%A0%E5%A5%BD-%E4%B8%96%E7%95%8C/">你好,世界</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/博客介绍//" class="article-tag-list-link color5">博客介绍</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -600,8 +427,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
